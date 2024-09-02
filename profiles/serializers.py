@@ -2,7 +2,7 @@ from rest_framework import serializers, validators
 
 from django.contrib.auth.password_validation import  validate_password
 
-from profiles.models import CustomUser
+from profiles.models import CustomUser, Profile
 
 class RegisterSeralizer(serializers.ModelSerializer):
 
@@ -26,5 +26,11 @@ class UserSeralizer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ('id','username', 'email', 'password')
+        fields = ('id','username')
 
+class ProfileSerializer(serializers.ModelSerializer):
+
+    user = UserSeralizer()
+    class Meta:
+        model = Profile
+        fields  = ("id","user") 
