@@ -49,8 +49,11 @@ INSTALLED_APPS = [
     "vocabularies",
     "exercises",
 
+    'drf_spectacular',
+
     'rest_framework',
     'rest_framework_simplejwt',
+
 ]
 
 MIDDLEWARE = [
@@ -145,8 +148,18 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=35),
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'DIGITAL VOCABULARY',
+    'DESCRIPTION': 'Digital Vocabulary is an application where users can create profiles,manage vocabularies, add words with meanings and example sentences, and participate in vocabulary exercises. The app supports profile management, a follow/unfollow system, and JWT-based authentication.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
